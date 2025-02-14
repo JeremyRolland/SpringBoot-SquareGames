@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -9,20 +10,16 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final Map<UUID, User> users = new HashMap<>();
+    @Autowired
+    UserDao userDao;
 
     @Override
-    public User createUser(UserCreationParams params) {
-        UUID userId = UUID.randomUUID();
-        User user = new User(userId, params.getEmail(),params.getPassword());
-        users.put(userId, user);
-        return user;
+    public User createUser(User user) {
+       return userDao.upsert(user);
     }
 
     @Override
-    public UserDto getUser(UUID userId) {
-        User user = users.get(userId);
-        UserDto userDto = new UserDto(user.getId(),user.getEmail());
-        return userDto;
+    public User getUser(UUID userId) {
+        return userDao.findById(userId).get();
     }
 }

@@ -13,11 +13,11 @@ public class UserController {
 
     @PostMapping("/users")
     public User createUser(@RequestBody UserCreationParams params) {
-        return userService.createUser(params);
+        return userService.createUser(new User(UUID.randomUUID(), params.getEmail(), params.getPassword()));
     }
 
     @GetMapping("/users/{userId}")
     public UserDto getUser(@PathVariable UUID userId) {
-        return userService.getUser(userId);
+        return new UserDto(userId, userService.getUser(userId).getEmail());
     }
 }
