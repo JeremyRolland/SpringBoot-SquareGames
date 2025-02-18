@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Qualifier("jdbcUserDao")
+    @Qualifier("jpaUserDao")
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
 
     @Override
     public User createUser(User user) {
