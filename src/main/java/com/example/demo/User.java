@@ -9,6 +9,8 @@ public class User {
     private String email;
     private String password;
 
+    public User() {}
+
     public User(UUID id, String email, String password) {
         this.id = id;
         this.email = email;
@@ -23,5 +25,7 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    public String getPassword() {return password;}
 
 }

@@ -6,10 +6,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class UserCreationParams {
 
-    private @NotNull @Email String email;
-    private @NotEmpty String password;
+    private final @NotNull @Email String email;
+    private final @NotEmpty String password;
 
-    public UserCreationParams() {
+    public UserCreationParams(@NotNull String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public String getEmail() {
